@@ -1,0 +1,172 @@
+html {
+    background-color: #333333;
+}
+body {
+    object-fit: contain;
+    margin: 0 auto;
+    padding: 0 20px 20px 20px;
+    color: white;
+    text-align: center;
+}
+h1 {
+    margin: 0;
+    padding: 20px 0;
+    text-shadow: 3px 3px 1px gray;
+}
+h1 img {
+    position: static;
+    width: 70px;
+    height: auto;
+}
+a {
+    color: lightpink;
+}
+table, th, td {
+    text-align: center;
+    border-collapse: collapse;
+}
+
+#game-scene {
+    object-fit: contain;
+    margin: 0 auto;
+    width: 850px;
+    height: 540px;
+}
+#game-board {
+    float: left;
+    width: 540px;
+    height: 540px;
+    background-color: #242424;
+    font-weight: bold;
+    position: relative;
+    /* border: 3px solid black; */
+}
+.board-col-ind {
+    width: 60px;
+    height: 20px;
+}
+.board-row-ind {
+    width: 20px;
+    height: 60px;
+}
+.board-cell {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background-color: #005000;
+    /* border: 2px solid #003000;
+    border-collapse: collapse; */
+    box-shadow: 0 0 0 1px #003800 inset;
+}
+.board-disk-side {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+}
+
+/* game-disk-num */
+#game-disk-num {
+    float: right;
+    width: 300px;
+    height: 60px;
+    background-color: #005000;
+    font-family: Consolas, sans-serif;
+    font-weight: bold;
+    position: relative;
+}
+#game-disk-side {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
+#game-disk-num-display {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    z-index: 8;
+    font-size:xx-large;
+}
+#black-disk-num {
+    width: 80px;
+    height: 60px;
+    color: black;
+    text-shadow:
+    -2px -2px white,
+    2px 2px white,
+    2px -2px white,
+    -2px 2px white,
+    -2px 0 white,
+    2px 0 white,
+    0 -2px white,
+    0 2px white;
+}
+#disk-num-separator {
+    width: 20px;
+    height: 60px;
+}
+#white-disk-num {
+    width: 80px;
+    height: 60px;
+    color: white;
+    text-shadow:
+    -2px -2px black,
+    2px 2px black,
+    2px -2px black,
+    -2px 2px black,
+    -2px 0 black,
+    2px 0 black,
+    0 -2px black,
+    0 2px black;
+}
+
+/* game-move-table */
+#game-move-table {
+    float: right;
+    margin-top: 10px;
+    width: 300px;
+    height: 400px;
+    background-color: lightgray;
+    color: black;
+    overflow-y: auto;
+}
+#game-move-table table,
+#game-move-table th,
+#game-move-table td {
+    border: 1px solid black;
+}
+#game-move-table th {
+    border-bottom: 2px solid black;
+}
+#move-num {
+    width: 60px;
+}
+#move-black, #move-white {
+    width: 120px;
+}
+
+/* game-button-menu */
+#game-button-menu {
+    float: right;
+    margin-top: 10px;
+    width: 300px;
+    height: 60px;
+    background-color: white;
+}
+#back-button {
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+    width: 50px;
+    height: 50px;
+}
+#replay-button {
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+    width: 50px;
+    height: 50px;
+}

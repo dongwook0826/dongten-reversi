@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="styles/style.css" rel="stylesheet">
+        <title>DongTen's Reversi</title>
+    </head>
+    <body>
+        <h1>
+            <img src="images/Othello (board game) free icon 5.png" alt="My test image">
+            <br>DongTen's Reversi
+        </h1>
+        <!-- img src: https://free-icon-rainbow.com/othello-board-game-free-icon-5/ -->
+        <p>DongTen's toy project: Reversi game board <br> Have fun! :)</p>
+        <div id="game-scene">
+            <div id="game-board">
+                <table id="game-board-table">
+                    <tr>
+                        <td></td>
+                        <td class="board-col-ind">a</td>
+                        <td class="board-col-ind">b</td>
+                        <td class="board-col-ind">c</td>
+                        <td class="board-col-ind">d</td>
+                        <td class="board-col-ind">e</td>
+                        <td class="board-col-ind">f</td>
+                        <td class="board-col-ind">g</td>
+                        <td class="board-col-ind">h</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="board-row-ind">1</td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="board-row-ind">2</td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="board-row-ind">3</td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="board-row-ind">4</td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="board-row-ind">5</td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="board-row-ind">6</td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="board-row-ind">7</td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="board-row-ind">8</td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td class="board-cell"></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="game-disk-num">
+                <svg id="game-disk-side">
+                    <circle cx="30" cy="30" r="25" stroke="white" stroke-width="3" fill="black" />
+                    <circle cx="270" cy="30" r="25" stroke="black" stroke-width="3" fill="white" />
+                </svg>
+                <table id="game-disk-num-display">
+                    <tr>
+                        <th id="black-disk-num">2</th>
+                        <th id="disk-num-separator">:</th>
+                        <th id="white-disk-num">2</th>
+                    </tr>
+                </table>
+            </div>
+            <div id="game-move-table">
+                <table>
+                    <tr>
+                        <th id="move-num">#</th>
+                        <th id="move-black">Black</th>
+                        <th id="move-white">White</th>
+                    </tr>
+                </table>
+            </div>
+            <div id="game-button-menu">
+                <img id="replay-button" src="images/replay-svgrepo-com.svg">
+                <!-- img src: https://www.svgrepo.com/svg/67421/replay -->
+                <img id="back-button" src="images/back-svgrepo-com.svg">
+                <!-- img src: https://www.svgrepo.com/svg/42622/back -->
+            </div>
+        </div>
+        <a href="https://en.wikipedia.org/wiki/Reversi">Rules for modern Reversi</a>
+        <script type="module" src="scripts/main.js"></script>
+    </body>
+</html>
