@@ -82,62 +82,78 @@ function initMoveTable() {
     moveTable.append(moveTableHeader)
 }
 
+function addMoveCell(r, f, turn, moveResult, num) {
+    if (moveResult === 0) {
+        return
+    } else if (moveResult === turn) { // the player moves again
+        if (turn > 0) { // black
+            let newMoveRow = moveTable.insertRow()
+            newMoveRow.insertCell().innerText = num
+            newMoveRow.insertCell().innerText = fileCoord[0][f] + (r+1)
+            let passCell = newMoveRow.insertCell()
+            passCell.innerText = 'passed'
+            passCell.style.color = 'gray'
+        } else { // white
+            let moveRow = moveTable.rows[moveTable.rows.length - 1]
+            moveRow.insertCell().innerText = fileCoord[1][f] + (r+1)
+            let newMoveRow = moveTable.insertRow()
+            newMoveRow.insertCell().innerText = num + 1
+            let passCell = newMoveRow.insertCell()
+            passCell.innerText = 'passed'
+            passCell.style.color = 'gray'
+        }
+    } else { // opponent moves, or game ends
+        if (turn > 0) { // black
+            let newMoveRow = moveTable.insertRow()
+            newMoveRow.insertCell().innerText = num
+            newMoveRow.insertCell().innerText = fileCoord[0][f] + (r+1)
+        } else { // white
+            let moveRow = moveTable.rows[moveTable.rows.length - 1]
+            moveRow.insertCell().innerText = fileCoord[1][f] + (r+1)
+        }
+    }
+}
+
 function moveResultAction(r, f) {
     let turn = reversi.getTurn()
     let num = reversi.getNum()
     let moveResult = reversi.moveResult(r, f)
+
+    if (moveResult === 0) return
+    
+    displayBoard()
+    displayDiskNum()
+    addMoveCell(r, f, turn, moveResult, num)
+
     switch (moveResult) {
-        case 0: return
-        case turn: // the player moves again
-            if (turn > 0) { // black
-                let newMoveRow = moveTable.insertRow()
-                newMoveRow.insertCell().innerText = num
-                newMoveRow.insertCell().innerText = fileCoord[0][f] + (r+1)
-                let passCell = newMoveRow.insertCell()
-                passCell.innerText = 'passed'
-                passCell.style.color = 'gray'
-            } else { // white
-                let moveRow = moveTable.rows[moveTable.rows.length - 1]
-                moveRow.insertCell().innerText = fileCoord[1][f] + (r+1)
-                let newMoveRow = moveTable.insertRow()
-                newMoveRow.insertCell().innerText = num + 1
-                let passCell = newMoveRow.insertCell()
-                passCell.innerText = 'passed'
-                passCell.style.color = 'gray'
-            }
-            break
-        case -turn: // opponent moves
-            if (turn > 0) { // black
-                let newMoveRow = moveTable.insertRow()
-                newMoveRow.insertCell().innerText = num
-                newMoveRow.insertCell().innerText = fileCoord[0][f] + (r+1)
-            } else { // white
-                let moveRow = moveTable.rows[moveTable.rows.length - 1]
-                moveRow.insertCell().innerText = fileCoord[1][f] + (r+1)
-            }
-            break
         case 2:
-            displayBoard()
-            displayDiskNum()
             alert("Game's finished. Black's win!")
-            return
+            break
         case -2:
-            displayBoard()
-            displayDiskNum()
             alert("Game's finished. White's win!")
-            return
-        default: // draw
+            break
+        case 3: case -3: // draw
             alert("Game's finished. It's a draw!")
-            return
+            break
+    }
+}
+
+function undo() {
+    // todo complete this
+    if (!reversi.undoingLastMove()) return
+    if (reversi.getTurn() > 0) { // Black's turn
+        moveTable.deleteRow(moveTable.rows.length - 1)
+    } else { // White's turn
+        if (moveTable.rows[moveTable.rows.length - 1].cells.length <= 2) {
+            moveTable.deleteRow(moveTable.rows.length - 1)
+        }
+        moveTable.rows[moveTable.rows.length - 1].deleteCell(2)
     }
     displayBoard()
     displayDiskNum()
 }
-/*
-function undo() {
 
-}*/
-
+// the code below runs during loading
 for (let r = 0; r < reversi.boardSize(); ++r) {
     piecesArray[r] = []
     for (let f = 0; f < reversi.boardSize(); ++f) {
@@ -173,7 +189,8 @@ resetButton.onclick = () => {
     }
 }
 undoButton.onclick = () => {
-    alert('Not yet implemented...')
+    // alert('Not yet implemented...')
+    undo()
 }
 
 displayBoard()

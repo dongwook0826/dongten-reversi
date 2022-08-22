@@ -12,8 +12,9 @@ export default class Reversi {
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0]
     ]
-    // moves by each players
+    // 8x8x8 cellwise flippable range array
     #legalMovesArray = []
+    // moves by each players
     #moves = []
     // 1 for black, -1 for white
     #turn = 1
@@ -204,5 +205,41 @@ export default class Reversi {
         } else { // the player makes move again
             return this.#turn
         }
+    }
+
+    undoingLastMove() {
+
+        let len = this.#moves.length
+        if (len === 0) return false
+
+        let lastMove = this.#moves.pop()
+        this.#turn = lastMove.turn
+        this.#num = lastMove.num
+
+        let r = lastMove.move[0]
+        let f = lastMove.move[1]
+        this.#board[r][f] = 0 // pick up the disk
+
+        let flip = lastMove.flip
+        let rd, fd
+        let vec
+        let sum = 0
+        for (let i = 0; i < flip.length; ++i) {
+            rd = r
+            fd = f
+            vec = this.#vectors[i]
+            sum += flip[i]
+            for (let d = 1; d <= flip[i]; ++d) {
+                rd += vec[0]
+                fd += vec[1]
+                this.#board[rd][fd] *= -1 // undo flip
+            }
+        }
+        let ti = this.#turn > 0 ? 0 : 1
+        this.#pieceNum[ti] -= 1 + sum
+        this.#pieceNum[1 - ti] += sum
+
+        this.#generateLegalMoves()
+        return true
     }
 }
