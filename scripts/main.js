@@ -131,22 +131,22 @@ function moveResultString(moveResult) {
     }
 }
 
-function moveResultAction(r, f) {
+async function moveResultAction(r, f) {
     let turn = reversi.getTurn()
     let num = reversi.getNum()
     let moveResult = reversi.moveResult(r, f)
 
     if (moveResult === 0) return
     
-    let moveResultPromise = new Promise((resolve, _) => {
+    let moveResultPromise = await new Promise((resolve, _) => {
         displayBoard()
         displayDiskNum()
         addMoveCell(r, f, turn, moveResult, num)
-        resolve(moveResultString(moveResult))
+        setTimeout(() => resolve(moveResultString(moveResult)))
     })
     
     if (Math.abs(moveResult) >= 2) {
-        setTimeout(() => alert(moveResultPromise))
+        alert(moveResultPromise)
     }
 }
 
