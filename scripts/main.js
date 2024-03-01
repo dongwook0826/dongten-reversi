@@ -114,6 +114,23 @@ function addMoveCell(r, f, turn, moveResult, num) {
     }
 }
 
+function moveResultString(moveResult) {
+    switch (moveResult) {
+        case 0:
+            return "Something went wrong!"
+        case 1:
+            return "White's move is made. Black's turn!"
+        case -1:
+            return "Black's move is made. White's turn!"
+        case 2:
+            return "Game's finished. Black's win!"
+        case -2:
+            return "Game's finished. White's win!"
+        case 3: case -3:
+            return "Game's finished. It's a draw!"
+    }
+}
+
 function moveResultAction(r, f) {
     let turn = reversi.getTurn()
     let num = reversi.getNum()
@@ -121,20 +138,15 @@ function moveResultAction(r, f) {
 
     if (moveResult === 0) return
     
-    displayBoard()
-    displayDiskNum()
-    addMoveCell(r, f, turn, moveResult, num)
-
-    switch (moveResult) {
-        case 2:
-            alert("Game's finished. Black's win!")
-            break
-        case -2:
-            alert("Game's finished. White's win!")
-            break
-        case 3: case -3: // draw
-            alert("Game's finished. It's a draw!")
-            break
+    let moveResultPromise = new Promise((resolve, _) => {
+        displayBoard()
+        displayDiskNum()
+        addMoveCell(r, f, turn, moveResult, num)
+        resolve(moveResultString(moveResult))
+    })
+    
+    if (Math.abs(moveResult) >= 2) {
+        setTimeout(() => alert(moveResultPromise))
     }
 }
 
